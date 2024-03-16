@@ -88,6 +88,8 @@ def compare_ml(server: int, community: str, old_ml, old_ts):
     for key in common_keys:
         if key not in ("timestamp", "server"):
             name = pl_api.name_from_id(key)
+            if name is None:
+                name = key
             diff = new_ml[key]["score"] - old_ml[key]["score"]
             if diff != 0:
                 payload += f"\n{name.ljust(22)} + {diff:,}"
