@@ -1,0 +1,13 @@
+[MD_BOT]
+md_log_dir = '../logs/md.log'
+md_file_dir = '../data/md.json'
+md_server = ''
+md_community = ''
+md_webhook = ''
+
+[ML_BOT]
+ml_log_dir = '../logs/ml.log'
+ml_file_dir = '../data/ml.json'
+ml_server = ''
+ml_community = ''
+ml_webhook = ''
