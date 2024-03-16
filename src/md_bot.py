@@ -28,6 +28,7 @@ logging.basicConfig(
 
 
 def main():
+    init_md_file(server, community, md_file_dir)
     check_md(server, community)
 
 
@@ -115,6 +116,13 @@ def update_md_file(data, dir):
     with open(md_file_dir, "w") as file:
         json.dump(data, file)
     logging.info(f"Done\n")
+
+
+def init_md_file(server, community, dir):
+    logging.info(f"Bot initial start-up, initializing {dir}")
+    md_api = hs.get_highscore_api(server, community, 1, 6)
+    md_api.json_export(dir)
+    logging.info(f"Initialization complete\n")
 
 
 if __name__ == "__main__":

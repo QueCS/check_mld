@@ -28,6 +28,7 @@ logging.basicConfig(
 
 
 def main():
+    init_ml_file(server, community, ml_file_dir)
     check_ml(server, community)
 
 
@@ -115,6 +116,13 @@ def update_ml_file(data, dir):
     with open(ml_file_dir, "w") as file:
         json.dump(data, file)
     logging.info(f"Done\n")
+
+
+def init_ml_file(server, community, dir):
+    logging.info(f"Bot initial start-up, initializing {dir}")
+    ml_api = hs.get_highscore_api(server, community, 1, 4)
+    ml_api.json_export(dir)
+    logging.info(f"Initialization complete\n")
 
 
 if __name__ == "__main__":
