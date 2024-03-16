@@ -28,9 +28,11 @@ Install necessary dependencies in the virtual environment.
 
 Adjust the configuration file using the text editor of your liking and save it as `config.toml`.\
 Both `md` and `ml` configurations work the same.\
+
 `md_server` = '*server_nb*' (e.g. '123').\
 `md_community` = '*community_id*' (e.g. 'fr').\
 `md_webhook` = '*discord_webhook*' (do NOT share this token with ANYBODY).\
+
 You can also adjust data and log directories if need be.
 
 Finally, launch the bots using the virtual environment.
@@ -40,7 +42,7 @@ Finally, launch the bots using the virtual environment.
 ```
 
 Note that in most cases, exiting the current terminal will kill the execution of the bot.\
-To avoid that you can [disown](https://linuxcommand.org/lc3_man_pages/disownh.html) it (among other methods):
+To avoid that you can [disown](https://linuxcommand.org/lc3_man_pages/disownh.html) it (among other methods).
 ```bash
 $ jobs
 [1]+  6392 Running          .venv/bin/python3 src/md_bot.py &
