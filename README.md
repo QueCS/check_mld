@@ -27,11 +27,11 @@ Install necessary dependencies in the virtual environment.
 ```
 
 Adjust the configuration file using the text editor of your liking and save it as `config.toml`.\
-Both `md` and `ml` configurations work the same.\
+Both `md` and `ml` configurations work the same.
 
 `md_server` = '*server_nb*' (e.g. '123').\
 `md_community` = '*community_id*' (e.g. 'fr').\
-`md_webhook` = '*discord_webhook*' (do NOT share this token with ANYBODY).\
+`md_webhook` = '*discord_webhook*' (do NOT share this token with ANYBODY).
 
 You can also adjust data and log directories if need be.
 
