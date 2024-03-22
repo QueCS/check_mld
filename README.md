@@ -8,12 +8,12 @@ At each API update (every hour or so) the bot will fetch the APIs, compare compa
 
 Clone the repository at the desired location.
 ```bash
-git clone https://github.com/QueCS/ogame_ml_md_bot.git
+git clone https://github.com/QueCS/check_mld.git
 ```
 
 Hop into it.
 ```bash
-cd ogame_ml_md_bot
+cd check_mld
 ```
 
 Set the appropriate python virtual environment used in further steps.
