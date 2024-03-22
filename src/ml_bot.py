@@ -55,6 +55,9 @@ def check_ml(server: int, community: str):
             if payload is False:
                 continue
 
+            if len(payload) > 2000:
+                payload = truncate_payload(payload, 2000)
+
             logging.info("Sending payload")
 
             while retry_count < max_retries:
@@ -139,6 +142,20 @@ def init_ml_file(server, community, dir):
     ml_api = hs.get_highscore_api(server, community, 1, 4)
     ml_api.json_export(dir)
     logging.info(f"Initialization complete\n")
+
+
+def truncate_payload(string, max_length):
+    lines = string.split("\n")
+    remaining_lines = []
+    current_length = 0
+
+    for line in lines:
+        if current_length + len(line) + 1 <= max_length:
+            remaining_lines.append(line)
+            current_length += len(line) + 1
+
+    shortened_string = "\n".join(remaining_lines)
+    return shortened_string
 
 
 if __name__ == "__main__":
