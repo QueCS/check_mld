@@ -46,20 +46,36 @@ def check_ml(server: int, community: str):
         current_time = datetime.datetime.now()
         current_ts = int(current_time.timestamp())
 
+        retry_count = 0
+        max_retries = 6
+
         if current_ts > old_ts + 3600:
-            new_ml, payload = compare_ml(server, community, old_ml, old_ts)
+            new_md, payload = compare_ml(server, community, old_ml, old_ts)
 
             if payload is False:
                 continue
 
             logging.info("Sending payload")
-            try:
-                ml_hook.send(payload)
-                logging.info("Done\n")
-                update_ml_file(new_ml, ml_file_dir)
-            except Exception as exception:
-                logging.warning(f"Calling hook.send(): {exception}")
-                logging.warning("Payload not sent\n")
+
+            while retry_count < max_retries:
+                try:
+                    ml_hook.send(payload)
+                    logging.info("Done\n")
+                    update_ml_file(new_md, ml_file_dir)
+                    break
+                except Exception as exception:
+                    logging.warning(f"Calling hook.send(): {exception}")
+                    logging.warning(
+                        f"Payload not sent, waiting 10s and trying again ({retry_count}/{max_retries})"
+                    )
+                    retry_count += 1
+                    time.sleep(10)
+
+            if retry_count == max_retries:
+                logging.warning(
+                    "Maximum dhook retries reached. Re-computing differences\n"
+                )
+
             continue
 
 

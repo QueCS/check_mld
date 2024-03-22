@@ -46,6 +46,9 @@ def check_md(server: int, community: str):
         current_time = datetime.datetime.now()
         current_ts = int(current_time.timestamp())
 
+        retry_count = 0
+        max_retries = 6
+
         if current_ts > old_ts + 3600:
             new_md, payload = compare_md(server, community, old_md, old_ts)
 
@@ -53,13 +56,26 @@ def check_md(server: int, community: str):
                 continue
 
             logging.info("Sending payload")
-            try:
-                md_hook.send(payload)
-                logging.info("Done\n")
-                update_md_file(new_md, md_file_dir)
-            except Exception as exception:
-                logging.warning(f"Calling hook.send(): {exception}")
-                logging.warning("Payload not sent\n")
+
+            while retry_count < max_retries:
+                try:
+                    md_hook.send(payload)
+                    logging.info("Done\n")
+                    update_md_file(new_md, md_file_dir)
+                    break
+                except Exception as exception:
+                    logging.warning(f"Calling hook.send(): {exception}")
+                    logging.warning(
+                        f"Payload not sent, waiting 10s and trying again ({retry_count}/{max_retries})"
+                    )
+                    retry_count += 1
+                    time.sleep(10)
+
+            if retry_count == max_retries:
+                logging.warning(
+                    "Maximum dhook retries reached. Re-computing differences\n"
+                )
+
             continue
 
 
