@@ -1,4 +1,4 @@
-# OGame Military Lost and Destroyed Discord Bot
+# Check Military Lost and Destroyed
 
 Python scripts checking Military Lost and Destroyed point variation on [OGame public APIs](https://forum.origin.ogame.gameforge.com/forum/thread/44-ogame-api/).
 
