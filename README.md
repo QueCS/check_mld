@@ -29,11 +29,19 @@ Install necessary dependencies in the virtual environment.
 Adjust the configuration file using the text editor of your liking and save it as `config.toml`.\
 Both `md` and `ml` configurations work the same.
 
-`md_server` = '*server_nb*' (e.g. '123').\
-`md_community` = '*community_id*' (e.g. 'fr').\
-`md_webhook` = '*discord_webhook*' (do NOT share this token with ANYBODY).
+`md_server` = '*server_nb*' (e.g. '123')\
+`md_community` = '*community_id*' (e.g. 'fr')\
+`md_webhook` = '*discord_webhook*' (do NOT share this token with ANYBODY)
 
-You can also adjust data and log directories if need be.
+You can also adjust data and log directories but you will need to copy the provided data and log files over there.
+
+`md_log_dir` = '*directory of your choice*'\
+`md_file_dir` = '*directory of your choice*'
+
+You can also configure the format of the output, see [here](https://gist.github.com/matthewzring/9f7bbfd102003963f9be7dbcf7d40e51#syntax-highlighting) for supported language formats.
+
+`syntax` = '*language of your choice*' (e.g. 'cpp')
+
 
 Finally, launch the bots using the virtual environment.
 ```bash
@@ -49,6 +57,11 @@ $ jobs
 [2]+  6393 Running          .venv/bin/python3 src/ml_bot.py &
 
 $ disown 6392 6393
+```
+
+## One-liner installation
+```bash
+git clone https://github.com/QueCS/check_mld.git && cd check_mld && python3 -m venv .venv && .venv/bin/pip3 install -r requirements.txt
 ```
 
 ## Disclaimer

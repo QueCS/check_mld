@@ -11,3 +11,6 @@ ml_file_dir = '../data/ml.json'
 ml_server = ''
 ml_community = ''
 ml_webhook = ''
+
+[PL_FORMAT]
+syntax = ''

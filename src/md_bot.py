@@ -18,6 +18,7 @@ md_file_dir = config.get("MD_BOT", {}).get("md_file_dir")
 server = config.get("MD_BOT", {}).get("md_server")
 community = config.get("MD_BOT", {}).get("md_community")
 md_hook = dhooks.Webhook(config.get("MD_BOT", {}).get("md_webhook"))
+syntax = config.get("PL_FORMAT", {}).get("syntax")
 
 logging.basicConfig(
     filename=f"{md_log_dir}",
@@ -123,7 +124,7 @@ def compare_md(server: int, community: str, old_md, old_ts):
     payload = "\n".join(sorted_lines)
 
     update_datetime = datetime.datetime.fromtimestamp(new_ts)
-    payload = f"```\n{update_datetime}\n\n{payload}\n```"
+    payload = f"```{syntax}\n{update_datetime}\n\n{payload}\n```"
 
     payload = payload.replace(",", ".")
 

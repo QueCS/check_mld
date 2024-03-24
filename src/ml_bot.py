@@ -18,6 +18,7 @@ ml_file_dir = config.get("ML_BOT", {}).get("ml_file_dir")
 server = config.get("ML_BOT", {}).get("ml_server")
 community = config.get("ML_BOT", {}).get("ml_community")
 ml_hook = dhooks.Webhook(config.get("ML_BOT", {}).get("ml_webhook"))
+syntax = config.get("PL_FORMAT", {}).get("syntax")
 
 logging.basicConfig(
     filename=f"{ml_log_dir}",
@@ -123,7 +124,7 @@ def compare_ml(server: int, community: str, old_ml, old_ts):
     payload = "\n".join(sorted_lines)
 
     update_datetime = datetime.datetime.fromtimestamp(new_ts)
-    payload = f"```\n{update_datetime}\n\n{payload}\n```"
+    payload = f"```{syntax}\n{update_datetime}\n\n{payload}\n```"
 
     payload = payload.replace(",", ".")
 
