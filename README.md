@@ -10,22 +10,22 @@ Clone the repository at the desired location.
 ```bash
 git clone https://github.com/QueCS/check_mld.git
 ```
-
+\
 Hop into it.
 ```bash
 cd check_mld
 ```
-
+\
 Set the appropriate python virtual environment used in further steps.
 ```bash
 python3 -m venv .venv
 ```
-
+\
 Install necessary dependencies in the virtual environment.
 ```bash
 .venv/bin/pip3 install -r requirements.txt
 ```
-
+\
 Adjust the configuration file using the text editor of your liking and save it as `config.toml`.\
 Both `md` and `ml` configurations work the same.
 
@@ -42,13 +42,13 @@ You can configure the format of the output, see [here](https://gist.github.com/m
 
 `syntax` = '*language of your choice*' (e.g. 'cpp')
 
-
+\
 Finally, launch the bots using the virtual environment.
 ```bash
 .venv/bin/python3 src/md_bot.py &
 .venv/bin/python3 src/ml_bot.py &
 ```
-
+\
 Note that in most cases, exiting the current terminal will kill the execution of the bot.\
 To avoid that you can [disown](https://linuxcommand.org/lc3_man_pages/disownh.html) it (among other methods).
 ```bash
