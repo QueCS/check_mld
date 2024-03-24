@@ -2,7 +2,7 @@
 
 Python scripts checking Military Lost and Destroyed point variation on [OGame public APIs](https://forum.origin.ogame.gameforge.com/forum/thread/44-ogame-api/).
 
-At each API update (every hour or so) the bot will fetch the APIs, compare compare previous (localy stored as JSON) and current values and send the difference in the past hour to the [Discord webhook](https://hookdeck.com/webhooks/platforms/how-to-get-started-with-discord-webhooks) of your choice.
+At each API update (every hour or so) the bot will fetch the APIs, compare previous (localy stored as JSON) and current values and send the difference over the past hour to the [Discord webhook](https://hookdeck.com/webhooks/platforms/how-to-get-started-with-discord-webhooks) of your choice.
 
 ## Getting started
 
