@@ -87,7 +87,7 @@ def compare_md(server: int, community: str, old_md, old_ts):
 
     md_api = hs.get_highscore_api(server, community, 1, 6)
     if md_api is None:
-        return "```\nError: md_api is None\n```"
+        return False, False
     new_ts = md_api.timestamp()
 
     if old_ts == new_ts:

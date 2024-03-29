@@ -87,7 +87,7 @@ def compare_ml(server: int, community: str, old_ml, old_ts):
 
     ml_api = hs.get_highscore_api(server, community, 1, 4)
     if ml_api is None:
-        return "```\nError: ml_api is None\n```"
+        return False, False
     new_ts = ml_api.timestamp()
 
     if old_ts == new_ts:
