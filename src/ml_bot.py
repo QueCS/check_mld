@@ -154,7 +154,7 @@ def truncate_payload(string, max_length):
             remaining_lines.append(line)
             current_length += len(line) + 1
 
-    shortened_string = "\n".join(remaining_lines) + "\n[TRUNCATED]```"
+    shortened_string = "\n".join(remaining_lines)[:-3] + "[TRUNCATED]\n```"
     return shortened_string
 
 
