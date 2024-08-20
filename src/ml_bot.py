@@ -34,7 +34,6 @@ def main():
 
 
 def check_ml(server: int, community: str):
-
     logging.info("Starting up check_ml")
 
     while True:
@@ -84,7 +83,6 @@ def check_ml(server: int, community: str):
 
 
 def compare_ml(server: int, community: str, old_ml, old_ts):
-
     ml_api = hs.get_highscore_api(server, community, 1, 4)
     if ml_api is None:
         return False, False
@@ -135,27 +133,28 @@ def update_ml_file(data, dir):
     logging.info(f"Updating {dir}")
     with open(ml_file_dir, "w") as file:
         json.dump(data, file)
-    logging.info(f"Done\n")
+    logging.info("Done\n")
 
 
 def init_ml_file(server, community, dir):
     logging.info(f"Bot initial start-up, initializing {dir}")
     ml_api = hs.get_highscore_api(server, community, 1, 4)
     ml_api.json_export(dir)
-    logging.info(f"Initialization complete\n")
+    logging.info("Initialization complete\n")
 
 
 def truncate_payload(string, max_length):
     lines = string.split("\n")
     remaining_lines = []
     current_length = 0
+    actual_max_length = max_length - 20
 
     for line in lines:
-        if current_length + len(line) + 1 <= max_length:
+        if current_length + len(line) + 1 <= actual_max_length:
             remaining_lines.append(line)
             current_length += len(line) + 1
 
-    shortened_string = "\n".join(remaining_lines)
+    shortened_string = "\n".join(remaining_lines) + "\n[TRUNCATED]```"
     return shortened_string
 
 
