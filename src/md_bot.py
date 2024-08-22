@@ -55,9 +55,6 @@ def check_md(server: int, community: str):
             if payload is False:
                 continue
 
-            if len(payload) > 2000:
-                payload = truncate_payload(payload, 2000)
-
             logging.info("Sending payload")
 
             while retry_count < max_retries:
@@ -121,6 +118,9 @@ def compare_md(server: int, community: str, old_md, old_ts):
     )
     payload = "\n".join(sorted_lines)
 
+    if len(payload) > 1800:
+        payload = truncate_payload(payload, 1800, "[TRUNCATED]")
+
     update_datetime = datetime.datetime.fromtimestamp(new_ts)
     payload = f"```{syntax}\n{update_datetime}\n\n{payload}\n```"
 
@@ -143,18 +143,17 @@ def init_md_file(server, community, dir):
     logging.info("Initialization complete\n")
 
 
-def truncate_payload(string, max_length):
+def truncate_payload(string, max_length, cutoff_string):
     lines = string.split("\n")
     remaining_lines = []
     current_length = 0
-    actual_max_length = max_length - 20
 
     for line in lines:
-        if current_length + len(line) + 1 <= actual_max_length:
+        if current_length + len(line) + len(cutoff_string) <= max_length:
             remaining_lines.append(line)
-            current_length += len(line) + 1
+            current_length += len(line)
 
-    shortened_string = "\n".join(remaining_lines)[:-3] + "[TRUNCATED]\n```"
+    shortened_string = "\n".join(remaining_lines) + f"\n{cutoff_string}"
     return shortened_string
 
 
